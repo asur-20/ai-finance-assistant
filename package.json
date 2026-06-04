@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "mastra dev",
-    "build": "mastra build",
-    "start": "mastra start"
+    "dev": "node --env-file=.env ./node_modules/mastra/dist/index.js dev",
+    "build": "node --env-file=.env ./node_modules/mastra/dist/index.js build",
+    "start": "node --env-file=.env ./node_modules/mastra/dist/index.js start"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,8 @@
     "node": ">=22.13.0"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.80",
+    "@ai-sdk/groq": "^3.0.39",
     "@mastra/core": "^1.38.0",
     "@mastra/duckdb": "^1.4.1",
     "@mastra/evals": "^1.2.4",
@@ -24,10 +26,15 @@
     "@mastra/loggers": "^1.1.2",
     "@mastra/memory": "^1.20.1",
     "@mastra/observability": "^1.14.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.21.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.9.1",
+    "@types/pg": "^8.20.0",
     "mastra": "^1.11.0",
     "typescript": "^6.0.3"
   }

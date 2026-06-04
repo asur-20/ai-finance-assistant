@@ -1,30 +1,129 @@
-# tara-finance-agent
+# AI Finance Assistant
 
-Welcome to your new [Mastra](https://mastra.ai/) project! We're excited to see what you'll build.
+An AI-powered finance analytics assistant built using Mastra, PostgreSQL, Groq, Express, and TypeScript.
 
-## Getting Started
+## Features
 
-Start the development server:
+* Spending analytics
+* Monthly spending trends
+* Category comparisons
+* Merchant normalization
+* Recurring subscription detection
+* Refund-aware net spending
+* Portfolio valuation
+* Investment returns calculation
+* Grounded AI responses using PostgreSQL
 
-```shell
-npm run dev
+---
+
+## Tech Stack
+
+* TypeScript
+* Node.js
+* PostgreSQL
+* Mastra
+* Groq API
+* Express.js
+
+---
+
+## Project Architecture
+
+User → API → Finance Agent → SQL Tools → PostgreSQL → Grounded Response
+
+---
+
+## API Endpoint
+
+### POST /ask
+
+Request:
+
+```json
+{
+  "question": "What is my portfolio value?"
+}
 ```
 
-Open [http://localhost:4111](http://localhost:4111) in your browser to access [Mastra Studio](https://mastra.ai/docs/studio/overview). It provides an interactive UI for building and testing your agents, along with a REST API that exposes your Mastra application as a local service. This lets you start building without worrying about integration right away.
+Response:
 
-You can start editing files inside the `src/mastra` directory. The development server will automatically reload whenever you make changes.
+```json
+{
+  "answer": "Total portfolio value is ₹119983.81"
+}
+```
 
-## Learn more
+---
 
-To learn more about Mastra, visit our [documentation](https://mastra.ai/docs/). Your bootstrapped project includes example code for [agents](https://mastra.ai/docs/agents/overview), [tools](https://mastra.ai/docs/agents/using-tools), [workflows](https://mastra.ai/docs/workflows/overview), [scorers](https://mastra.ai/docs/evals/overview), and [observability](https://mastra.ai/docs/observability/overview).
+## Example Queries
 
-If you're new to AI agents, check out our [course](https://mastra.ai/learn) and [YouTube videos](https://youtube.com/@mastra-ai). You can also join our [Discord](https://discord.gg/BTYqqHKUrf) community to get help and share your projects.
+* What was my biggest expense?
+* Compare food and travel spending
+* Show recurring subscriptions
+* What is my portfolio value?
+* What are my portfolio returns?
+* Show top merchants
 
-## Deploy to the Mastra platform
+---
 
-The [Mastra platform](https://projects.mastra.ai) provides two products for deploying and managing AI applications built with the Mastra framework:
+## Setup Instructions
 
-- **Studio**: A hosted visual environment for testing agents, running workflows, and inspecting traces
-- **Server**: A production deployment target that runs your Mastra application as an API server
+### Install dependencies
 
-Learn more in the [Mastra platform documentation](https://mastra.ai/docs/mastra-platform/overview).
+```bash
+npm install
+```
+
+### Configure environment
+
+Create `.env`
+
+```env
+DATABASE_URL=your_postgres_url
+GROQ_API_KEY=your_groq_key
+```
+
+### Start server
+
+```bash
+npx tsx src/mastra/server.ts
+```
+
+---
+
+## Database
+
+PostgreSQL stores:
+
+* transactions
+* holdings
+* fund NAV data
+* merchant analytics
+
+---
+
+## Key Finance Intelligence
+
+### Merchant Normalization
+
+Handles noisy merchants like:
+
+* SWIGGY*ORDER
+* Swiggy Instamart
+* SWIGGY BANGALORE
+
+as a single merchant entity.
+
+### Refund-aware Spending
+
+Net spending calculations include refunds and reversals.
+
+### Portfolio Analytics
+
+Calculates:
+
+* latest NAV
+* current portfolio value
+* total investment returns
+
+---
