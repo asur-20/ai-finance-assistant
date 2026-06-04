@@ -1,6 +1,15 @@
 import { Agent } from "@mastra/core/agent";
 import { groq } from "@ai-sdk/groq";
-
+import {
+  totalSpendingTool,
+  biggestExpenseTool,
+  topMerchantsTool,
+  recurringSubscriptionsTool,
+  portfolioValueTool,
+  portfolioReturnsTool,
+  monthlySpendingTool,
+  categoryComparisonTool,
+} from "../tools/spending-tool";
 import {
   getTotalSpending,
   getTopMerchants,
@@ -18,13 +27,48 @@ export const financeAgent = new Agent({
 
   name: "Finance Agent",
 
-  instructions: `
-    You are a helpful finance assistant.
-  `,
+instructions: `
+You are an AI finance assistant with access to real financial data.
+
+IMPORTANT:
+- Always use tools whenever financial data is needed.
+- After tool execution, ALWAYS summarize results naturally for the user.
+- Never stop after tool execution.
+- Never say you don't have data.
+- Always explain tool outputs in simple human language.
+
+Examples:
+- "You spent ₹12000 on food."
+- "Your biggest expense was ₹34000 at Air India."
+- "Your portfolio value is ₹119983."
+
+You can answer questions about:
+- spending
+- expenses
+- subscriptions
+- merchants
+- portfolio value
+- portfolio returns
+- investments
+- monthly spending
+- category comparisons
+`,
+
 
   model: groq("llama-3.1-8b-instant"),
-});
 
+tools: {
+  totalSpendingTool,
+  biggestExpenseTool,
+  topMerchantsTool,
+  recurringSubscriptionsTool,
+  portfolioValueTool,
+  portfolioReturnsTool,
+  monthlySpendingTool,
+  categoryComparisonTool,
+},
+
+});
 export async function askFinanceAgent(userMessage: string) {
 
   const message = userMessage.toLowerCase();

@@ -1,5 +1,7 @@
 import { Pool } from "pg";
 import dotenv from "dotenv";
+import { createTool } from "@mastra/core/tools";
+import { z } from "zod";
 
 dotenv.config();
 
@@ -336,3 +338,204 @@ export async function getPortfolioReturns() {
       totalProfit.toFixed(2),
   };
 }
+export const totalSpendingTool = createTool({
+
+  id: "total-spending-tool",
+
+  description:
+    "Get total spending optionally by category",
+
+  inputSchema: z.object({
+    category: z.string().optional(),
+  }),
+
+  outputSchema: z.object({
+    total: z.string(),
+  }),
+
+  execute: async ({ category }) => {
+
+    const result =
+      await getTotalSpending(category);
+
+    return {
+      total: result.total,
+    };
+  },
+});
+export const biggestExpenseTool = createTool({
+
+  id: "biggest-expense-tool",
+
+  description:
+    "Get the user's biggest expense transaction",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.object({
+    merchant: z.string(),
+    amount: z.string(),
+    category: z.string(),
+  }),
+
+  execute: async () => {
+
+    const result =
+      await getBiggestExpense();
+
+    return {
+      merchant: result.merchant,
+      amount: result.amount,
+      category: result.category,
+    };
+  },
+});
+
+export const topMerchantsTool = createTool({
+
+  id: "top-merchants-tool",
+
+  description:
+    "Get top spending merchants",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.array(
+    z.object({
+      merchant: z.string(),
+      total: z.string(),
+    })
+  ),
+
+  execute: async () => {
+
+    return await getTopMerchants();
+  },
+});
+
+export const recurringSubscriptionsTool = createTool({
+
+  id: "recurring-subscriptions-tool",
+
+  description:
+    "Get recurring subscriptions and repeated merchants",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.array(
+    z.object({
+      merchant: z.string(),
+      transaction_count: z.string(),
+      average_amount: z.string(),
+    })
+  ),
+
+  execute: async () => {
+
+    return await getRecurringSubscriptions();
+  },
+});
+
+export const portfolioValueTool = createTool({
+
+  id: "portfolio-value-tool",
+
+  description:
+    "Get total portfolio value",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.object({
+    totalPortfolioValue: z.string(),
+  }),
+
+  execute: async () => {
+
+    const result =
+      await getPortfolioValue();
+
+    return {
+      totalPortfolioValue:
+        result.totalPortfolioValue,
+    };
+  },
+});
+
+export const portfolioReturnsTool = createTool({
+
+  id: "portfolio-returns-tool",
+
+  description:
+    "Get total portfolio profit or returns",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.object({
+    totalProfit: z.string(),
+  }),
+
+  execute: async () => {
+
+    const result =
+      await getPortfolioReturns();
+
+    return {
+      totalProfit:
+        result.totalProfit,
+    };
+  },
+});
+
+export const monthlySpendingTool = createTool({
+
+  id: "monthly-spending-tool",
+
+  description:
+    "Get monthly spending trends",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.array(
+    z.object({
+      month: z.string(),
+      total: z.string(),
+    })
+  ),
+
+  execute: async () => {
+
+    return await getMonthlySpending();
+  },
+});
+
+export const categoryComparisonTool = createTool({
+
+  id: "category-comparison-tool",
+
+  description:
+    "Compare spending between two categories",
+
+  inputSchema: z.object({
+    category1: z.string(),
+    category2: z.string(),
+  }),
+
+  outputSchema: z.array(
+    z.object({
+      category: z.string(),
+      total: z.string(),
+    })
+  ),
+
+  execute: async ({
+    category1,
+    category2,
+  }) => {
+
+    return await compareCategorySpending(
+      category1,
+      category2
+    );
+  },
+});
+

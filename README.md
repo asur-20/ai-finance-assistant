@@ -128,25 +128,57 @@ Calculates:
 
 ---
 ## Screenshots
+```md
+## API Response Screenshots
 
-### PostgreSQL Database
+### Portfolio Value Query
 
-![Database](screenshots/db-tables.png)
-
----
-
-### API Response
-
-![API](screenshots/api-response.png)
+![Portfolio Value](screenshots/api-response/Portfolio_value.png)
 
 ---
 
 ### Recurring Subscription Detection
 
-![Subscriptions](screenshots/subscriptions.png)
+![Recurring Subscriptions](screenshots/api-response/Recurring subscriptions.png)
 
 ---
 
-### Portfolio Returns
+## PostgreSQL Database Tables
 
-![Portfolio](screenshots/portfolio-returns.png)
+### Fund NAV Table
+
+![Fund NAV](screenshots/db-tables/fund_nav.png)
+
+---
+
+### Funds Table
+
+![Funds](screenshots/db-tables/funds.png)
+
+---
+
+### Transactions Table
+
+![Transactions](screenshots/db-tables/transactions.png)
+
+---
+
+### Holdings Table
+
+![Holdings](screenshots/db-tables/holdings.png)
+
+---
+
+## Mastra AI Chat
+
+### Chat Example 1
+
+![Chat 1](screenshots/mastra-chat/Chat1.png)
+
+---
+
+### Chat Example 2
+
+![Chat 2](screenshots/mastra-chat/Chat2.png)
+```
+
