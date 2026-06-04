@@ -79,16 +79,15 @@ export async function askFinanceAgent(userMessage: string) {
   .join("\n\n");
   }
   if (
-    message.includes("portfolio return") ||
-    message.includes("portfolio returns") ||
-    message.includes("profit")
+    message.includes("portfolio value") ||
+    message.includes("portfolio")
   ) {
   
     const result =
-      await getPortfolioReturns();
+      await getPortfolioValue();
   
     return `
-  Total portfolio profit is ₹${result.totalProfit}
+  Total portfolio value is ₹${result.totalPortfolioValue}
     `;
   }
   if (

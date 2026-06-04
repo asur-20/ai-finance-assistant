@@ -127,3 +127,26 @@ Calculates:
 * total investment returns
 
 ---
+## Screenshots
+
+### PostgreSQL Database
+
+![Database](screenshots/db-tables.png)
+
+---
+
+### API Response
+
+![API](screenshots/api-response.png)
+
+---
+
+### Recurring Subscription Detection
+
+![Subscriptions](screenshots/subscriptions.png)
+
+---
+
+### Portfolio Returns
+
+![Portfolio](screenshots/portfolio-returns.png)
